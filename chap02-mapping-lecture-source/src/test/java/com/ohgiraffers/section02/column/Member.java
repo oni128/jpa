@@ -1,54 +1,55 @@
 package com.ohgiraffers.section02.column;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity(name="member_section02")
-@Table(name = "tbl_member_section02")
+@Table(name="tbl_member_section02")
 public class Member {
+
     @Id
-    @Column(name = "member_no")
+    @Column(name="member_no")
     private int memberNo;
 
-    @Column(name = "member_id")
-    private  String memberId;
+    @Column(name="member_id")
+    private String memberId;
 
-    @Column(name = "member_pwd")
+    @Column(name="member_pwd")
     private String memberPwd;
 
-    @Column(name = "nickname")
-    private String nickName;
+    @Column(name="nickname")
+    private String nickname;
 
-    @Column(name = "phone")
+    @Column(name="phone", columnDefinition = "varchar(200) default '010-0000-1234'")
     private String phone;
 
-    @Column(name = "email")
+    @Column(name="email", unique = true)
     private String email;
 
-    @Column(name = "address")
+    @Column(name="address", nullable = false)
     private String address;
 
-    @Column(name = "enroll_date")
+    @Column(name="enroll_date")
+//    @Temporal(TemporalType.TIMESTAMP)         // datetime
+//    @Temporal(TemporalType.DATE)              // date
+    @Temporal(TemporalType.TIME)                // time
     private Date enrollDate;
 
-    @Column(name = "membe_role")
+    @Column(name="member_role")
     private String memberRole;
 
-    @Column(name = "status")
+    @Column(name="status")
     private String status;
 
     public Member() {
     }
 
-    public Member(int memberNo, String memberId, String memberPwd, String nickName, String phone, String email,
-                  String address, Date enrollDate, String memberRole, String status) {
+    public Member(int memberNo, String memberId, String memberPwd, String nickname, String phone, String email, String address, Date enrollDate, String memberRole, String status) {
         this.memberNo = memberNo;
         this.memberId = memberId;
         this.memberPwd = memberPwd;
-        this.nickName = nickName;
+        this.nickname = nickname;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -81,12 +82,12 @@ public class Member {
         this.memberPwd = memberPwd;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPhone() {
@@ -143,7 +144,7 @@ public class Member {
                 "memberNo=" + memberNo +
                 ", memberId='" + memberId + '\'' +
                 ", memberPwd='" + memberPwd + '\'' +
-                ", nickName='" + nickName + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +

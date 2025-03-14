@@ -1,14 +1,11 @@
-package com.ohgiraffers.section01.entity;
+package com.ohgiraffers.section04.enumtype;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity(name="member_section01")
-@Table(name="tbl_member_section01")
+@Entity(name="member_section04")
+@Table(name="tbl_member_section04")
 public class Member {
 
     @Id
@@ -34,10 +31,13 @@ public class Member {
     private String address;
 
     @Column(name="enroll_date")
-    private java.util.Date enrollDate;
+    private Date enrollDate;
 
+    /* 설명. Enum 타입은 숫자(ORDINAL)/이름(STRING) 두 가지 형태로 설정할 수 있다.(DB에 들어갈 값) */
     @Column(name="member_role")
-    private String memberRole;
+    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.ORDINAL)
+    private RoleType memberRole;
 
     @Column(name="status")
     private String status;
@@ -45,7 +45,7 @@ public class Member {
     public Member() {
     }
 
-    public Member(int memberNo, String memberId, String memberPwd, String nickname, String phone, String email, String address, Date enrollDate, String memberRole, String status) {
+    public Member(int memberNo, String memberId, String memberPwd, String nickname, String phone, String email, String address, Date enrollDate, RoleType memberRole, String status) {
         this.memberNo = memberNo;
         this.memberId = memberId;
         this.memberPwd = memberPwd;
@@ -122,11 +122,11 @@ public class Member {
         this.enrollDate = enrollDate;
     }
 
-    public String getMemberRole() {
+    public RoleType getMemberRole() {
         return memberRole;
     }
 
-    public void setMemberRole(String memberRole) {
+    public void setMemberRole(RoleType memberRole) {
         this.memberRole = memberRole;
     }
 
