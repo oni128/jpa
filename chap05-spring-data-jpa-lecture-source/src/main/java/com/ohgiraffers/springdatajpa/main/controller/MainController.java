@@ -1,4 +1,12 @@
-package com.ohgiraffers.springdatajpa.menu.controller.main;
+package com.ohgiraffers.springdatajpa.main.controller;
 
-public class lMain {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class MainController {
+    @GetMapping(value = {"/", "/main"})
+    public String main() {
+        return "main/main"; /* view resolver가 찾아줌 */
+    }
 }
